@@ -1,0 +1,43 @@
+1. Change your configuration share_network.
+$ nm-connection-editor 
+
+2. Change netplan configuration on the slave PC.
+$ sudo nano /etc/netplan/01-network-manager-all.yaml
+
+##01-network-manager-all.yaml
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp89s0:
+      addresses: [ "192.168.0.212/24"]
+      nameservers:
+        addresses: [ "8.8.8.8", "1.1.1.1" ]
+      routes:
+        - to: 0.0.0.0/0
+          via: 192.168.0.100
+          on-link: true
+
+
+3. Apply network 
+$ sudo netplan apply
+
+
+
+
+jetson
+
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      addresses: [192.168.0.11/24]
+      nameservers:
+        addresses: [192.168.0.1, 8.8.8.8]
+      routes:
+        - to: 0.0.0.0/0
+          via: 192.168.0.100
+          on-link: True

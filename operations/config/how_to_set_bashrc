@@ -1,0 +1,29 @@
+alias eb='gedit ~/.bashrc'
+alias sb='source ~/.bashrc'
+alias cw='cd ~/catkin_ws'
+alias cs='cd ~/catkin_ws/src'
+alias cm='cd ~/catkin_ws && catkin_make'
+alias save_map='rosrun pcl_ros pointcloud_to_pcd input:=/laser_cloud_surround'
+alias record_sensor='rosbag record /velodyne_points /imu/data /scout_base_controller/odom /gps/fix'
+source /opt/ros/melodic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+#export ROS_MASTER_URI=http://localhost:11311
+#export ROS_HOSTNAME=localhost
+export ROS_MASTER_URI=http://192.168.100.100:11311
+export ROS_HOSTNAME=192.168.100.100
+alias ft='sudo date -s "2080-10-15 21:06"'
+alias now='sudo date -s "2020-10-12 20:06"'
+alias nx='ssh usrg@192.168.100.101'
+
+alias ccw='rosparam set /hyundai_route_planner_node/ccw true'
+alias cw='rosparam set /hyundai_route_planner_node/ccw false'
+
+alias start_robot='cd /home/$USER/catkin_ws/src/postman_robot/operations/script && ./system_launch.sh'
+
+if [[ "$TERM" =~ "screen".* ]]; then
+  echo "We are in TMUX!"
+else
+  echo "We are not in TMUX :/  Let's get in!"
+  # Launches tmux in a session called 'base'.
+  tmuxp load /home/$USER/catkin_ws/src/postman_robot/operations/config/goose.yaml
+fi

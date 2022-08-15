@@ -1,0 +1,58 @@
+session_name: postman
+windows: 
+  - window_name: rosmaster
+    layout: tiled
+    shell_command_before:
+      - roscore
+    panes:
+    - shell_command:
+      - 
+
+  - window_name: NUC
+    layout: tiled
+    shell_command_before:
+      - init_sides
+      - cd ~/catkin_ws/src
+      - sleep 3
+    panes:
+    - shell_command:
+      - roslaunch scout_base base.launch
+    - shell_command:
+      - roslaunch ugv_master master.launch
+    - shell_command:
+      - roslaunch ugv_master control.launch
+    - shell_command:
+      - roslaunch composite_navigation globalmap_loader.launch
+    - shell_command:
+      - roslaunch ugv_master navigation_no_gps.launch
+    - shell_command:
+      - roslaunch ugv_master planning.launch
+
+  # - window_name: NVIDIA
+  #   layout: tiled
+  #   shell_command_before:
+  #     - echo "CONNECTING NVIDIA"
+  #     - ssh nvidia@192.168.11.101 -p 22
+  #   panes:
+  #   - shell_command:
+  #     - 
+  #   - shell_command:
+  #     - 
+
+  - window_name: VISUALIZE
+    layout: tiled
+    shell_command_before:
+      - sleep 6
+      - cd /home/$USER/catkin_ws/src/postman_robot/ugv_master/rviz/
+    panes:
+    - shell_command:
+      - rviz -d ugv.rviz
+    - shell_command:
+      - rostopic echo /Ackermann/command/auto
+    - shell_command:
+      - rostopic echo /Ackermann/command/joy
+    - shell_command:
+      - rostopic echo /Ackermann/command/visual
+    - shell_command:
+      - rostopic echo /Ackermann/command/visual
+

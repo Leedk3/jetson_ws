@@ -1,0 +1,55 @@
+<launch>
+	<!-- <group ns="stereo"> -->
+
+		<arg name="rear_left" default="v4l2:///dev/video2"/>
+		<arg name="rear_right" default="v4l2:///dev/video3"/>
+
+		<arg name="front_left" default="v4l2:///dev/video5"/>
+		<arg name="front_right" default="v4l2:///dev/video4"/>
+
+		<arg name="input_width" default="1920"/>
+		<arg name="input_height" default="1080"/>
+		<arg name="input_codec" default="unknown"/>
+		<arg name="input_loop" default="0"/>
+
+		<!-- rear_left -->
+		<node pkg="ros_deep_learning" type="video_source" name="rear_left" output="screen">
+			<param name="resource" value="$(arg rear_left)"/>
+			<param name="width" value="$(arg input_width)"/>
+			<param name="height" value="$(arg input_height)"/>
+			<param name="loop" value="$(arg input_loop)"/>
+		</node>
+
+		<!-- rear_right -->
+		<node pkg="ros_deep_learning" type="video_source" name="rear_right" output="screen">
+			<param name="resource" value="$(arg rear_right)"/>
+			<param name="width" value="$(arg input_width)"/>
+			<param name="height" value="$(arg input_height)"/>
+			<param name="loop" value="$(arg input_loop)"/>
+		</node>
+
+		<!-- front_left -->
+		<node pkg="ros_deep_learning" type="video_source" name="front_left" output="screen">
+			<param name="resource" value="$(arg front_left)"/>
+			<param name="width" value="$(arg input_width)"/>
+			<param name="height" value="$(arg input_height)"/>
+			<param name="loop" value="$(arg input_loop)"/>
+		</node>
+
+
+		<!-- front_right -->
+		<node pkg="ros_deep_learning" type="video_source" name="front_right" output="screen">
+			<param name="resource" value="$(arg front_right)"/>
+			<param name="width" value="$(arg input_width)"/>
+			<param name="height" value="$(arg input_height)"/>
+			<param name="loop" value="$(arg input_loop)"/>
+		</node>
+
+		<!-- <remap from="/left/raw" to="/left/image_raw"/>
+		<remap from="/middel/raw" to="/middle/image_raw"/>
+		<remap from="/right/raw" to="/right/image_raw"/> -->
+	<!-- </group> -->
+		<!-- <node name="left1" pkg="cv_camera" type="pub_camera_info_left.py" output="screen"/>
+  		<node name="right1" pkg="cv_camera" type="pub_camera_info_right.py" output="screen"/> -->
+		<node name="pub" pkg="cv_camera" type="pub_camera_info.py" output="screen"/>
+</launch>

@@ -1,0 +1,23 @@
+session_name: ETRI_neubility_platform
+windows: 
+  - window_name: NUC
+    layout: tiled
+    shell_command_before:
+      - cd /home/etri/etri_ws/
+      - source install/setup.bash
+      - sleep 1
+    panes:
+    - shell_command:
+      - sleep 5 #> /tmp/sensors.launch.log 2>/tmp/sensors.launch.err
+      - roslaunch ugv_master master_neubility.launch #> /tmp/sensors.launch.log 2>/tmp/sensors.launch.err
+    - shell_command:
+      - roslaunch ugv_master control.launch #> /tmp/control.launch.log 2>/tmp/control.launch.err
+    - shell_command:
+      # - roslaunch composite_navigation globalmap_loader.launch #> /tmp/globalmap_loader.launch.log 2>/tmp/globalmap_loader.launch.err
+      - roslaunch composite_navigation multi_pcd_loader.launch #> /tmp/globalmap_loader.launch.log 2>/tmp/globalmap_loader.launch.err
+    - shell_command:
+      - roslaunch ugv_master navigation_multi_floor.launch #> /tmp/navigation_no_gps.launch.log 2>/tmp/navigation_no_gps.launch.err
+    - shell_command:
+      - roslaunch ugv_master planning.launch #> /tmp/planning.launch.log 2>/tmp/planning.launch.err
+
+

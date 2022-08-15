@@ -1,0 +1,41 @@
+image_width: 512
+image_height: 400
+camera_name: gmsl_camera
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [ 283.7196, 0., 258.15951, 0., 394.83875, 216.17585, 0., 0. , 1.]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [-0.358271, 0.097651, -0.000602, -0.000445, 0.000000]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1.,0.,0.,0.,1.,0.,0.,0.,1.]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [197.94203, 0., 257.04317, 0., 0., 352.38174, 220.19402, 0., 0., 0., 1., 0.]
+
+# image_width: 512 
+# image_height: 400
+# camera_name: gmsl_camera
+# camera_matrix:
+#   rows: 3
+#   cols: 3
+#   data: [1154.17073, 0, 198.54238, 0, 1101.37811, 119.82308, 0, 0, 1]
+# distortion_model: plumb_bob
+# distortion_coefficients:
+#   rows: 1
+#   cols: 5
+#   data: [-3.768898, 29.664834, -0.016911, 0.244765, 0.000000]
+# rectification_matrix:
+#   rows: 3
+#   cols: 3
+#   data: [-0.66655348, -0.29196891, 0.68590132, 0.43207176, -0.90110807, 0.03630754, 0.60747054, 0.32055951, 0.72678824]
+# projection_matrix:
+#   rows: 3
+#   cols: 4
+#   data: [110681.97572, 0, -516.27207, 0, 0, 110681.97572, 141.07385, 0, 0, 0, 1, 0]

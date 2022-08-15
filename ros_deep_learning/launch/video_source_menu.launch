@@ -1,0 +1,36 @@
+<launch>
+	<arg name="input0" default="v4l2:///dev/video0"/>
+	<arg name="input1" default="v4l2:///dev/video1"/>
+	<arg name="input2" default="v4l2:///dev/video2"/>
+	<!-- <arg name="input3" default="v4l2:///dev/video3"/> -->
+	<arg name="input_width" default="0"/>
+	<arg name="input_height" default="0"/>
+	<arg name="input_codec" default="unknown"/>
+	<arg name="input_loop" default="0"/>
+
+	<node pkg="ros_deep_learning" type="video_source" name="video_source0" output="screen">
+		<param name="resource" value="$(arg input0)"/>
+		<param name="width" value="$(arg input_width)"/>
+		<param name="height" value="$(arg input_height)"/>
+		<param name="loop" value="$(arg input_loop)"/>
+	</node>
+	<node pkg="ros_deep_learning" type="video_source" name="video_source1" output="screen">
+		<param name="resource" value="$(arg input1)"/>
+		<param name="width" value="$(arg input_width)"/>
+		<param name="height" value="$(arg input_height)"/>
+		<param name="loop" value="$(arg input_loop)"/>
+	</node>
+	<node pkg="ros_deep_learning" type="video_source" name="video_source2" output="screen">
+		<param name="resource" value="$(arg input2)"/>
+		<param name="width" value="$(arg input_width)"/>
+		<param name="height" value="$(arg input_height)"/>
+		<param name="loop" value="$(arg input_loop)"/>
+	</node>
+	<!-- <node pkg="ros_deep_learning" type="video_source" name="video_source3" output="screen">
+		<param name="resource" value="$(arg input3)"/>
+		<param name="width" value="$(arg input_width)"/>
+		<param name="height" value="$(arg input_height)"/>
+		<param name="loop" value="$(arg input_loop)"/>
+	</node> -->
+
+</launch>

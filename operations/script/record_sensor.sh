@@ -1,0 +1,1 @@
+rosbag record --split --size 30720 /Odometry/ekf_estimated /Odometry/system /imu/data /os1_node/imu_packets /os1_node/lidar_packets /os_cloud_node/32ch_points /os_cloud_node/imu /os_cloud_node/points /os_node/imu_packets /os_node/lidar_packets /rear/scan /front/scan /wheelodom /wheelodom_alive /m_score

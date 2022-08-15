@@ -1,0 +1,43 @@
+session_name: deploy
+windows: 
+  - window_name: remove
+    layout: tiled
+    shell_command_before:
+      - ssh etri@192.168.0.212
+      - cd /home/etri/etri_ws/
+      - sleep 1
+      - rm -rf devel/ build/
+      - sleep 1
+    panes:
+    - shell_command:
+      - catkin_make
+      - echo "REMOVED"
+      - logout
+      # - cd /home/usrg/catkin_ws/
+      # - scp -r ./devel/include/flying-car@192.168.100.97:/home/flying-car/catkin_ws/devel/
+      # - scp -r ./devel/lib/flying-car@192.168.100.97:/home/flying-car/catkin_ws/devel/
+      # - scp -r ./devel/share/flying-car@192.168.100.97:/home/flying-car/catkin_ws/devel/
+      # - ssh flying-car@192.168.100.97
+      # - cd catkin_ws/
+
+  - window_name: install
+    layout: tiled
+    shell_command_before:
+      - sleep 2
+    panes:
+    - shell_command:
+      - cd /home/usrg/postman_ws/
+      - catkin_make install
+#      - scp -r ./devel/ etri@192.168.0.212:/home/etri/etri_ws/
+      - sleep 1
+#      - scp -r ./build/ etri@192.168.0.212:/home/etri/etri_ws/
+      - sleep 1
+      - scp -r ./install/ etri@192.168.0.212:/home/etri/etri_ws/
+      - sleep 1
+#      - ssh flying-car@192.168.100.97
+#      - cd catkin_ws/
+
+    - shell_command:
+#      - cd /home/usrg/catkin_ws
+#      - scp -r ./src/hyundai_2021/ flying-car@192.168.100.97:/home/flying-car/catkin_ws/src/
+      

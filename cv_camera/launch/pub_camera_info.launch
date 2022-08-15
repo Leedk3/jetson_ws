@@ -1,0 +1,4 @@
+<launch>
+  <node name="left_info" pkg="cv_camera" type="pub_camera_info_left.py" output="screen"/>
+  <node name="right_info" pkg="cv_camera" type="pub_camera_info_right.py" output="screen"/>
+</launch>
