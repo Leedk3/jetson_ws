@@ -38,18 +38,20 @@ windows:
   - window_name: Inference
     layout: tiled
     shell_command_before:
-      - cd /home/etri/catkin_ws/
+      - cd /home/etri/yolact_ws/
       - source devel/setup.bash
       - sleep 5
     panes:
     - shell_command:
-            #      - roslaunch ros_deep_learning segnet_front_right.launch
-    - shell_command:
-            #      - roslaunch ros_deep_learning segnet_rear_right.launch
-    - shell_command:
-            #      - rosrun image_transport republish raw in:=/segnet_front_right/overlay compressed out:=/segnet_front_right/
-    - shell_command:
-            #      - rosrun image_transport republish raw in:=/segnet_rear_right/overlay compressed out:=/segnet_rear_right/
+      - roslaunch yolact_ros yolact_ros.launch
+    # - shell_command:
+    #   - roslaunch ros_deep_learning segnet_front_right.launch
+    # - shell_command:
+    #   - roslaunch ros_deep_learning segnet_rear_right.launch
+    # - shell_command:
+    #   - rosrun image_transport republish raw in:=/segnet_front_right/overlay compressed out:=/segnet_front_right/
+    # - shell_command:
+    #   - rosrun image_transport republish raw in:=/segnet_rear_right/overlay compressed out:=/segnet_rear_right/
 
   # - window_name: Stereo
   #   layout: tiled
