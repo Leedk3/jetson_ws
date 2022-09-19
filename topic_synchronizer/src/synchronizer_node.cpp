@@ -17,7 +17,6 @@ void callback(const ImageConstPtr& image_right, const CameraInfoConstPtr& info_r
 {
   // Solve all of perception here...
   ROS_INFO("Sync_Callback");
-
   image_right_pub.publish(image_right);
   info_right_pub.publish(info_right);
   image_left_pub.publish(image_left);

@@ -10,9 +10,11 @@ windows:
     - shell_command:
       - roslaunch ros_deep_learning video_source_sw.launch #> /tmp/control.launch.log 2>/tmp/control.launch.err
     - shell_command:
-      - rosrun image_transport republish raw in:=/front_right/image_raw compressed out:=/front_right/
+      - echo "front right compressed image is replaced with stereo right image"
+      # - rosrun image_transport republish raw in:=/front_right/image_raw compressed out:=/front_right/
     - shell_command:
-      - rosrun image_transport republish raw in:=/front_left/image_raw compressed out:=/front_left/
+      - echo "front left compressed image is replaced with stereo left image"
+      # - rosrun image_transport republish raw in:=/front_left/image_raw compressed out:=/front_left/
     - shell_command:
       - rosrun image_transport republish raw in:=/rear_right/image_raw compressed out:=/rear_right/
     - shell_command:

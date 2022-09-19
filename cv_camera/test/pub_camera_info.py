@@ -95,39 +95,39 @@ def yaml_to_CameraInfo_rear_left(yaml_fname):
 def callback_image_front_right(msg):
     global image_msg_front_right
     # image_msg_front_right = msg
-    # camera_info_msg_front_right.header = image_msg_front_right.header
+    # camera_info_msg_front_right.header = image_msg_front_right.header 
+    image_msg_front_right.header.frame_id = camera_info_msg_front_right.header.frame_id
     front_right_image = CvBridge().imgmsg_to_cv2(msg, "bgr8")
     resize_front_right = cv2.resize(front_right_image, (512, 400))
     image_msg_front_right = CvBridge().cv2_to_imgmsg(resize_front_right, "bgr8")
-    camera_info_msg_front_right.header = image_msg_front_right.header
 
 def callback_image_front_left(msg):
     global image_msg_front_left
     # image_msg_front_left = msg
     # camera_info_msg_front_left.header = image_msg_front_left.header
+    image_msg_front_left.header.frame_id = camera_info_msg_front_left.header.frame_id
     front_left_image = CvBridge().imgmsg_to_cv2(msg, "bgr8")
     resize_front_left = cv2.resize(front_left_image, (512, 400))
     image_msg_front_left = CvBridge().cv2_to_imgmsg(resize_front_left, "bgr8")
-    camera_info_msg_front_left.header = image_msg_front_left.header
 
 
 def callback_image_rear_right(msg):
     global image_msg_rear_right
     # image_msg_rear_right = msg
     # camera_info_msg_rear_right.header = image_msg_rear_right.header
+    image_msg_rear_right.header.frame_id = camera_info_msg_rear_right.header.frame_id 
     rear_right_image = CvBridge().imgmsg_to_cv2(msg, "bgr8")
     resize_rear_right = cv2.resize(rear_right_image, (512, 400))
     image_msg_rear_right = CvBridge().cv2_to_imgmsg(resize_rear_right, "bgr8")
-    camera_info_msg_rear_right.header = image_msg_rear_right.header
     
 def callback_image_rear_left(msg):
     global image_msg_rear_left
     # image_msg_rear_left = msg
     # camera_info_msg_rear_left.header = image_msg_rear_left.header
+    image_msg_rear_left.header.frame_id = camera_info_msg_rear_left.header.frame_id 
     rear_left_image = CvBridge().imgmsg_to_cv2(msg, "bgr8")
     resize_rear_left = cv2.resize(rear_left_image, (512, 400))
     image_msg_rear_left = CvBridge().cv2_to_imgmsg(resize_rear_left, "bgr8")
-    camera_info_msg_rear_left.header = image_msg_rear_left.header
 
 
 if __name__ == "__main__":
