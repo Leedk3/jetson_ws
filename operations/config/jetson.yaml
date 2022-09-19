@@ -10,21 +10,21 @@ windows:
     - shell_command:
       - roslaunch ros_deep_learning video_source_sw.launch #> /tmp/control.launch.log 2>/tmp/control.launch.err
     - shell_command:
-      - echo "front right compressed image is replaced with stereo right image"
-      # - rosrun image_transport republish raw in:=/front_right/image_raw compressed out:=/front_right/
+      - rosrun cv_camera pub_camera_info.py 
     - shell_command:
-      - echo "front left compressed image is replaced with stereo left image"
-      # - rosrun image_transport republish raw in:=/front_left/image_raw compressed out:=/front_left/
+      - rosrun image_transport republish raw in:=/front_right/image_raw compressed out:=/front_right/
+    - shell_command:
+      - rosrun image_transport republish raw in:=/front_left/image_raw compressed out:=/front_left/
     - shell_command:
       - rosrun image_transport republish raw in:=/rear_right/image_raw compressed out:=/rear_right/
     - shell_command:
       - rosrun image_transport republish raw in:=/rear_left/image_raw compressed out:=/rear_left/
-    - shell_command:
-      - rosrun topic_synchronizer topic_synchronizer_node
-    - shell_command:
-      - rosrun image_transport republish raw in:=/stereo/right/image_raw compressed out:=/stereo/right
-    - shell_command:
-      - rosrun image_transport republish raw in:=/stereo/left/image_raw compressed out:=/stereo/left
+    # - shell_command:
+      # - rosrun topic_synchronizer topic_synchronizer_node
+    # - shell_command:
+      # - rosrun image_transport republish raw in:=/stereo/right/image_raw compressed out:=/stereo/right
+    # - shell_command:
+      # - rosrun image_transport republish raw in:=/stereo/left/image_raw compressed out:=/stereo/left
 
   - window_name: JetsonAGX_APRILTAG
     layout: tiled
@@ -45,29 +45,31 @@ windows:
       - sleep 5
     panes:
     - shell_command:
-            #- roslaunch yolact_ros yolact_edge_ros.launch
+      - roslaunch yolact_ros yolact_edge_ros.launch
     - shell_command:
       - roslaunch ros_deep_learning segnet_front_right.launch
     - shell_command:
-      - roslaunch ros_deep_learning segnet_rear_right.launch
+      - ROS_NAMESPACE=front_left rosrun image_proc image_proc
+      
+      # - roslaunch ros_deep_learning segnet_rear_right.launch
     # - shell_command:
     #   - rosrun image_transport republish raw in:=/segnet_front_right/overlay compressed out:=/segnet_front_right/
     # - shell_command:
     #   - rosrun image_transport republish raw in:=/segnet_rear_right/overlay compressed out:=/segnet_rear_right/
 
-  - window_name: Stereo
-    layout: tiled
-    shell_command_before:
-      - cd /home/etri/catkin_ws/
-      - source devel/setup.bash
-      - export DISPLAY=localhost:10.0
-      - sleep 5
-    panes:
-    - shell_command:
-      - ROS_NAMESPACE=stereo rosrun stereo_image_proc stereo_image_proc _approximate_sync:=True _queue_size:=100
-    - shell_command:
-      - rosrun image_view stereo_view stereo:=/stereo image:=image_rect_color _approximate_sync:=true _queue_size:=100
-    - shell_command:
-      - rosrun tf static_transform_publisher 0.0 0.0 0.0 -1.5707963267948966 -1.5707963267948966 0.0 stereo_camera stereo_base 10
+  # - window_name: Stereo
+  #   layout: tiled
+  #   shell_command_before:
+  #     - cd /home/etri/catkin_ws/
+  #     - source devel/setup.bash
+  #     # - export DISPLAY=localhost:10.0
+  #     - sleep 5
+  #   panes:
+  #   - shell_command:
+  #     # - ROS_NAMESPACE=stereo rosrun stereo_image_proc stereo_image_proc _approximate_sync:=True _queue_size:=100
+  #   - shell_command:
+  #     # - rosrun image_view stereo_view stereo:=/stereo image:=image_rect_color _approximate_sync:=true _queue_size:=100
+  #   - shell_command:
+  #     # - rosrun tf static_transform_publisher 0.0 0.0 0.0 -1.5707963267948966 -1.5707963267948966 0.0 stereo_camera stereo_base 10
 
 

@@ -51,5 +51,5 @@
 	<!-- </group> -->
 		<!-- <node name="left1" pkg="cv_camera" type="pub_camera_info_left.py" output="screen"/>
   		<node name="right1" pkg="cv_camera" type="pub_camera_info_right.py" output="screen"/> -->
-		<node name="pub" pkg="cv_camera" type="pub_camera_info.py" output="screen"/>
+		<!-- <node name="pub" pkg="cv_camera" type="pub_camera_info.py" output="screen"/> -->
 </launch>
